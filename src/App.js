@@ -17,6 +17,7 @@ class Table extends Component {
     this.itemHeight = 30;
     this.tableHeight = 300;
     this.padding = 90
+    this.total = 1000
   }
 
   state = {
@@ -68,10 +69,10 @@ class Table extends Component {
   }
 
   _renderLastItemId = () => {
-    if(( this._visibleFirstItemId() + 90) < 500){
+    if(( this._visibleFirstItemId() + 90) < this.total){
       return this._visibleFirstItemId() + 90
     }else{
-      return 500
+      return this.total
     }
   }
 
@@ -94,9 +95,8 @@ class Table extends Component {
 
   render() {
     const {renderFirstItemId, renderLastItemId} = this.state
-
     let rows = []
-    for(let i=0; i < 500; i++){
+    for(let i=0; i < this.total; i++){
       rows[i] = <div className={`item item-${i}`} key={i}>item {i}</div> 
     }
 
@@ -105,7 +105,7 @@ class Table extends Component {
 
     let middle_rows = rows.slice(renderFirstItemId, renderLastItemId)
 
-    let bottom_height = (500 - renderLastItemId) * this.itemHeight
+    let bottom_height = (this.total - renderLastItemId) * this.itemHeight
     let bottom = <div style={{'height': bottom_height}} ></div> 
 
     return (
