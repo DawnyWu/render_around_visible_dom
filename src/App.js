@@ -21,7 +21,6 @@ class Table extends Component {
   }
 
   state = {
-    c: 0,
     visibleFirstItemId: 0,
     visibleLastItemId: 10,
     renderFirstItemId: 0,
